@@ -17,3 +17,12 @@ insert into college(Student_code,Student_Name,Student_Course,Student_Percentage)
 delete from college where Student_code = 'COL002';
 set autocommit = 0;
 rollback;
+select Student_Course,Student_id from college group by Student_Course,Student_id;
+select Student_Course from college group by Student_Course having count(Student_Course)=2;
+select distinct * from college;
+select distinct Student_course from college;
+select sum(Student_percentage) from college;
+select min(Student_percentage) from college;
+select max(Student_percentage) from college;
+select avg(Student_percentage) from college;
+select count(Student_Name) from college;
