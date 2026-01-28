@@ -1,0 +1,22 @@
+show databases;
+use ds;
+show tables;
+select * from college;
+select * from students;
+create table rating(sno int primary key, name varchar(100), rating float);
+insert into rating values(1,'Ajith',4.2),(2,'Vikram',3.9),(3,'Yash',5.0),(4,'Murari',4.1),(5,'Pushpa',2.2);
+select * from rating;
+desc rating;
+create table t2(sno int, id int primary key,percentage float, foreign key (sno) references rating (sno) );
+insert into t2 values(1,101,78.1),(2,102,40.6),(3,103,90.4),(5,105,10);
+create table t3(id int , email varchar(100) ,foreign key (id) references t2 (id));
+insert into t3 values(101,'a@gmail.com'),(103,'y@gmail.com'),(105,'m@gmail.com');
+select * from t3;
+delete from t3 where id is null;
+create table t4(sno int,id int,movie varchar(100),foreign key (sno) references rating (sno), foreign key (id) references t2(id));
+insert into t4 values(1,102,'Vikra'),(3,103,'KGF');
+select * from rating inner join t2 on rating.sno = t2.sno;
+select rating.sno,rating.name,t2.id,rating.rating from rating inner join t2 on rating.sno = t2.sno;
+select * from t2 inner join t3 on t2.id = t3.id;
+select * from t3 inner join t4 on t3.id = t4.id;
+
