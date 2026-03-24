@@ -1,0 +1,65 @@
+create database pro;
+use pro;
+select * from first;
+desc first;
+select distinct age from first;
+set sql_safe_updates = 0;
+begin;
+update first set age = 
+case
+when age = '' then null
+when age = 'twenty six' then 26
+when age = 'thirty' then 30
+when age = 'thirty two' then 32
+end
+where age in ('','twenty six','thirty','thirty two');
+commit;
+alter table first modify column age int;
+select * from first;
+select Join_date from first;
+begin;
+update first set Join_date = date_format(str_to_date(Join_date,'%d-%m-%Y'),'%Y-%m-%d');
+select * from first;
+select distinct Gender from first;
+alter table first modify column Join_Date Date;
+desc first;
+commit;
+alter table first modify column Sales bigint;
+select distinct sales from first;
+update first set sales = null where sales = '';
+commit;
+update first set Gender = 'Male' where Gender = 'M';
+update first set Gender = 'Female' where Gender = 'F';
+select * from first;
+select distinct City from first;
+update first set city = trim(city);
+update first set Gender = upper(Gender);
+rollback;
+commit;
+select distinct department from first;
+update first set department = 'Marketing' where department = 'Marketng';
+select * from first where age is null and department = 'Marketing';
+select min(age) from first where department = 'Marketing';
+select * from first where Gender = 'Female' and age > 30 or age is null and department = 'Marketing' order by age;
+update first set age = 26 where age is null and department = 'Marketing';
+select * from first where Gender = 'Female' and department = 'Marketing' and age > 30 or age is null;
+select * from first where age is null and department = 'Marketing' order by age;
+begin;
+update first set age = 30 where age is null and salary < 43000 and Department ='Marketing';
+update first set age = 30 where age is null and salary = 43000 and Department ='Marketing';
+select * from first where department = 'Marketing' order by age;
+update first set age = 31 where id = 146;
+select * from first where age is null and department = 'HR';
+select * from first where department = 'HR';
+update first set age = 27 where id = 108;
+rollback;
+select distinct city from first;
+select * from first;
+select * from first where sales is null;
+select * from first where department = 'HR';
+select * from first where department = 'it' order by sales;
+update first set sales = 0 where sales is null;
+update first set city = 'Bangalore' where city = 'Banglore';
+update first set sales = 0 where sales is null and department = 'HR';
+commit;
+
